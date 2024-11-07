@@ -1,0 +1,127 @@
+version: "3"
+
+services:
+    nats-server:
+        container_name: nats_server
+        image: nats:latest
+        restart: always
+
+    client-gateway:
+        container_name: client_gateway
+        image: nachodocker1714/assets-client-gateway:${CLIENT_GATEWAY_VERSION}
+        ports:
+            - ${CLIENT_GATEWAY_PORT}:${CLIENT_GATEWAY_PORT}
+        restart: always
+        environment:
+            - PORT=${CLIENT_GATEWAY_PORT}
+            - NATS_SERVERS=${NATS_SERVERS}
+            - CLIENT_DOMAIN=${CLIENT_DOMAIN}
+
+    auth-ms:
+        container_name: auth-ms
+        image: nachodocker1714/assets-auth-ms:${AUTH_MS_VERSION}
+        restart: always
+        environment:
+            - PORT=${AUTH_MS_PORT}
+            - DATABASE_URL=${AUTH_MS_DATABASE_URL}
+            - NATS_SERVERS=${NATS_SERVERS}
+            - JWT_SECRET_CLIENT=${AUTH_JWT_SECRET_CLIENT}
+            - JWT_SECRET_PROFESSIONAL=${AUTH_JWT_SECRET_PROFESSIONAL}
+
+    coordinator-ms:
+        container_name: coordinator-ms
+        image: nachodocker1714/assets-coordinator-ms:${COORDINATOR_MS_VERSION}
+        restart: always
+        environment:
+            - PORT=${COORDINATOR_MS_PORT}
+            - DATABASE_URL=${COORDINATOR_MS_DATABASE_URL}
+            - NATS_SERVERS=${NATS_SERVERS}
+
+    coordinator-db:
+        container_name: coordinator-db
+        image: nachodocker1714/assets-coordinator-db:${COORDINATOR_DB_VERSION}
+        restart: always
+        volumes:
+            - postgresCoordinator:/var/lib/postgresql/data
+        ports:
+            - ${COORDINATOR_DB_PORT}:5432
+        environment:
+            - POSTGRES_USER=${COORDINATOR_DB_USER}
+            - POSTGRES_PASSWORD=${COORDINATOR_DB_PASSWORD}
+            - POSTGRES_DB=${COORDINATOR_DB_SCHEMA}
+
+    order-ms:
+        container_name: order-ms
+        image: nachodocker1714/assets-order-ms:${ORDER_MS_VERSION}
+        restart: always
+        environment:
+            - PORT=${ORDER_MS_PORT}
+            - DATABASE_URL=${ORDER_MS_DATABASE_URL}
+            - NATS_SERVERS=${NATS_SERVERS}
+
+    order-db:
+        container_name: order-db
+        image: nachodocker1714/assets-order-db:${ORDER_DB_VERSION}
+        restart: always
+        volumes:
+            - postgresOrder:/var/lib/postgresql/data
+        ports:
+            - ${ORDER_DB_PORT}:5432
+        environment:
+            - POSTGRES_USER=${ORDER_DB_USER}
+            - POSTGRES_PASSWORD=${ORDER_DB_PASSWORD}
+            - POSTGRES_DB=${ORDER_DB_SCHEMA}
+
+    community-ms:
+        container_name: community-ms
+        image: nachodocker1714/assets-community-ms:${COMMUNITY_MS_VERSION}
+        restart: always
+        environment:
+            - PORT=${COMMUNITY_MS_PORT}
+            - DATABASE_URL=${COMMUNITY_MS_DATABASE_URL}
+            - NATS_SERVERS=${NATS_SERVERS}
+
+    community-db:
+        container_name: community-db
+        image: nachodocker1714/assets-community-db:${COMMUNITY_DB_VERSION}
+        restart: always
+        volumes:
+            - postgresCommunity:/var/lib/postgresql/data
+        ports:
+            - ${COMMUNITY_DB_PORT}:5432
+        environment:
+            - POSTGRES_USER=${COMMUNITY_DB_USER}
+            - POSTGRES_PASSWORD=${COMMUNITY_DB_PASSWORD}
+            - POSTGRES_DB=${COMMUNITY_DB_SCHEMA}
+
+    professional-ms:
+        container_name: professional-ms
+        image: nachodocker1714/assets-professional-ms:${PROFESSIONAL_MS_VERSION}
+        restart: always
+        environment:
+            - PORT=${PROFESSIONAL_MS_PORT}
+            - DATABASE_URL=${PROFESSIONAL_MS_DATABASE_URL}
+            - NATS_SERVERS=${NATS_SERVERS}
+
+    professional-db:
+        container_name: professional-db
+        image: nachodocker1714/assets-professional-db:${PROFESSIONAL_DB_VERSION}
+        restart: always
+        volumes:
+            - postgresProfessional:/var/lib/postgresql/data
+        ports:
+            - ${PROFESSIONAL_DB_PORT}:5432
+        environment:
+            - POSTGRES_USER=${PROFESSIONAL_DB_USER}
+            - POSTGRES_PASSWORD=${PROFESSIONAL_DB_PASSWORD}
+            - POSTGRES_DB=${PROFESSIONAL_DB_SCHEMA}
+
+volumes:
+    postgresCoordinator:
+        external: false
+    postgresOrder:
+        external: false
+    postgresCommunity:
+        external: false
+    postgresProfessional:
+        external: false

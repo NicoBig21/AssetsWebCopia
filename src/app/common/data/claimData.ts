@@ -1,0 +1,47 @@
+import { IClaim } from "../interface/claim-interface";
+
+export const data: IClaim[] = [
+    {
+      id: 1,
+      nombre: 'Oscar',
+      email: 'nicobignone@gmail.com',
+      image: 'https://example.com/avatar1.jpg',
+      cause: 'Rotura de rodilla',
+      location: 'CABA',
+      phone: 1122433454,
+      social_work: 'OSDE',
+      professional: 'Dr. Pérez',
+      urgency: 'alta',
+      creado: new Date('2023-01-15'),
+      actualizado: new Date('2023-04-02'),
+    },
+    {
+      id: 2,
+      nombre: 'Carla',
+      email: 'carla@example.com',
+      image: 'https://example.com/avatar2.jpg',
+      cause: 'Dolor de espalda',
+      location: 'Buenos Aires',
+      phone: 1145678901,
+      social_work: 'Swiss Medical',
+      professional: 'Dr. Gómez',
+      urgency: 'media',
+      creado: new Date('2023-02-10'),
+      actualizado: new Date('2023-05-18'),
+    },
+    {
+      id: 3,
+      nombre: 'Lucas',
+      email: 'lucas@example.com',
+      image: 'https://example.com/avatar3.jpg',
+      cause: 'Fractura de brazo',
+      location: 'Rosario',
+      phone: 1122334455,
+      social_work: 'Galeno',
+      professional: 'Dr. Martínez',
+      urgency: 'baja',
+      creado: new Date('2023-03-05'),
+      actualizado: new Date('2023-07-22'),
+    },
+  ];
+  
