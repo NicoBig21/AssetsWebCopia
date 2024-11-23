@@ -9,7 +9,6 @@ const styles = {
   card: {
     backgroundColor: '#ffffff',
     color: '#fff',
-    mt: 2,
   },
   title: {
     color: '#000',
@@ -60,12 +59,13 @@ const iconMapping: { [key: string]: JSX.Element } = {
 interface CardStaticsProps {
   title: string;
   title2: string;
-  total: number;
-  change: string | number;
+  total?: number;
+  change?: string | number;
   icon: number;
+  description?: string;
 }
 
-export default function CardStatics({ title, title2, total, change, icon }: CardStaticsProps) {
+export default function CardStatics({ title, title2, total, change, icon, description }: CardStaticsProps) {
   return (
     <Grid>
       <Box>
@@ -81,6 +81,11 @@ export default function CardStatics({ title, title2, total, change, icon }: Card
               <Box>
                 <Typography variant="button" sx={ styles.title2 }>{title2}</Typography>
                 <Typography variant="h4" sx={ styles.total }>{total}</Typography>
+                {description && (
+                <Typography variant="body2" sx={styles.subtitle}>
+                  {description}
+                </Typography>
+              )}
               </Box>
             </Box>
             <Divider sx={{ backgroundColor: '#fff', marginY: 2 }} />

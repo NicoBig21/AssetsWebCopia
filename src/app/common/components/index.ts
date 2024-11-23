@@ -18,6 +18,7 @@ import CardProfileData from './cards/CardProfileData'; // Card de Datos de Perfi
 import CardHomeCompany from './cards/CardHomeCompany'; // Card de Home Empresa
 import CardStatics from './cards/CardStatics'; // Card de Pedidos
 import CardClaim from './cards/CardClaim'; // Card de Reclamos
+import CardDetailPerson from './cards/CardDetailPerson'; // Card de Detalle de Personas
 
 /* Filters */
 import FilterComponent from './filters/FilterComponent'; // Filtro por A-Z, Z-A, Urgencia: Alta a Baja, Urgencia: Baja a Alta
@@ -46,6 +47,7 @@ import GraphicMonthly from './graphics/GraphicMonthly'; // Grafico Mensual Pedid
 import GraphicWeekly from './graphics/GraphicWeekly'; // Grafico Semanal Pedidos y Reclamos
 import GraphicMade from './graphics/GraphicMade'; // Grafico Realizados Pedidos y Reclamos
 import GraphicProfessional from './graphics/GraphicProfessional'; // Grafico de Tarjeta Prestaciones, Profesionales y Pacientes
+import GraphicHomePerson from './graphics/GraphicHomePerson'; // Grafico de Home Personas
 
 
 export { 
@@ -64,6 +66,7 @@ export {
     CardHomeCompany,
     CardStatics,
     CardClaim,
+    CardDetailPerson,
 
     FilterComponent,
     SearchComponent,
@@ -86,4 +89,5 @@ export {
     GraphicWeekly,
     GraphicMade,
     GraphicProfessional,
+    GraphicHomePerson
 };

@@ -151,7 +151,8 @@ export default function CardHomeCompany({ title, date, location, growth, earning
                                 <Typography 
                                     fontSize={28} 
                                     fontWeight="500">
-                                {earnings} </Typography>
+                                    {earnings}
+                                </Typography>
                             </Box>
                         </Grid>
                         

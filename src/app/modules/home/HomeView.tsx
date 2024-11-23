@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Grid } from "@mui/material";
-import { ButtonDynamic,CardHomeCompany, GraphicMade, GraphicMonthly, GraphicProfessional, GraphicWeekly } from "../../common/components";
+import { ButtonDynamic,CardDetailPerson,CardHomeCompany, CardStatics, GraphicHomePerson, GraphicMade, GraphicMonthly, GraphicProfessional, GraphicWeekly } from "../../common/components";
 import { GraphicOfPlacedClaims, GraphicOfPlacedOrders, MonthlyClaimGraphic, MonthlyOrderGraphic, WeeklyClaimGraphic, WeeklyOrderGraphic} from "../../common/data/graphicHomeData";
 import { cardsData } from "../../common/data/cardHomeData";
+import { people } from "../../common/data/cardDetailPerson";
 
 const views = { 
   pedidos: 'Pedidos',
@@ -82,20 +83,99 @@ export default function HomeView() {
               ))}
             </Grid>
           );
-        case views.profesionales:
-          return (
-            <Grid container spacing={2} mt={2}>
-              <Grid item xs={12} md={4}>
-                <GraphicProfessional title="Pedidos Realizados" total={110} data={ordersData} />
+          case views.profesionales:
+            return (
+              <Grid container spacing={2} mt={2}>
+                {/* Sección de Detalles del Profesional */}
+                <Grid item xs={12} md={4}>
+                  <CardDetailPerson people={people} />
+                </Grid>
+          
+                {/* Sección de Estadísticas */}
+                <Grid item xs={12} md={8}>
+                  <Grid container spacing={2}>
+                    <Grid item xs={6} sm={4} md={4}>
+                      <CardStatics
+                        title="40"
+                        title2="Appointments"
+                        description="Yesterday: 22 Appointments"
+                        icon={2}
+                      />
+                    </Grid>
+                    <Grid item xs={6} sm={4} md={4}>
+                      <CardStatics
+                        title="21"
+                        title2="New Admit"
+                        description="Yesterday: 10 Admits"
+                        icon={2}
+                      />
+                    </Grid>
+                    <Grid item xs={6} sm={4} md={4}>
+                      <CardStatics
+                        title="14"
+                        title2="Operations"
+                        description="Yesterday: 9 Operations"
+                        icon={2}
+                      />
+                    </Grid>
+                    <Grid item xs={6} sm={4} md={4}>
+                      <CardStatics
+                        title="15"
+                        title2="Doctors"
+                        description="Today Available"
+                        icon={2}
+                      />
+                    </Grid>
+                    <Grid item xs={6} sm={4} md={4}>
+                      <CardStatics
+                        title="36"
+                        title2="Nurses"
+                        description="Today Available"
+                        icon={2}
+                      />
+                    </Grid>
+                    <Grid item xs={6} sm={4} md={4}>
+                      <CardStatics
+                        title="$52,140"
+                        title2="Earnings"
+                        description="Yesterday: $48,875"
+                        icon={2}
+                      />
+                    </Grid>
+                  </Grid>
+                </Grid>
+          
+                {/* Segunda Sección */}
+                <Grid item xs={12} md={8}>
+                  <GraphicHomePerson/>
+                </Grid>
+
+                {/* Tercera Sección */}
+                <Grid container spacing={2} mt={2}>
+                  <Grid item xs={12} md={4}>
+                    <GraphicProfessional 
+                      title="Pedidos Realizados" 
+                      total={110} 
+                      data={ordersData} 
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <GraphicProfessional 
+                      title="Reclamos Realizados" 
+                      total={110} 
+                      data={ordersData} 
+                    />
+                  </Grid>
+                  <Grid item xs={12} md={4}>
+                    <GraphicProfessional 
+                      title="Prestaciones Realizadas" 
+                      total={110} 
+                      data={ordersData} 
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
-              <Grid item xs={12} md={4}>
-                <GraphicProfessional title="Reclamos Realizados" total={110} data={ordersData} />
-              </Grid>
-              <Grid item xs={12} md={4}>
-                <GraphicProfessional title="Prestaciones Realizadas" total={110} data={ordersData} />
-              </Grid>
-            </Grid>
-          );
+            );                
       default:
         return <div>Selecciona un gráfico</div>;
     }

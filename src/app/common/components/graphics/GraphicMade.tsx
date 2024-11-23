@@ -59,7 +59,7 @@ export default function GraphicMade({ metadata }: { metadata: MadeGraphicOrdersA
             <Typography variant="body2">Pedidos Realizados por mes</Typography>
           </Box>
           <Box display="flex" alignItems="center">
-            <Circle sx={{ color: '#32CD32', fontSize: 12, mr: 0.5 }} />
+            <Circle sx={{ color: '#22577a', fontSize: 12, mr: 0.5 }} />
             <Typography variant="body2">Pedidos Restantes por mes</Typography>
           </Box>
         </Stack>
